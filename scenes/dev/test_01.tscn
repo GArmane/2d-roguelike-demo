@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwno0ow0o8bjg"]
 
-[ext_resource type="PackedScene" uid="uid://cja1bs611hyww" path="res://tiles/base_dungeon/base_dungeon.tscn" id="1_2tbwn"]
+[ext_resource type="PackedScene" uid="uid://cja1bs611hyww" path="res://tiles/dungeon/dungeon.tscn" id="1_2tbwn"]
 
 [node name="Test01" type="Node"]
 

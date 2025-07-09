@@ -1,7 +1,7 @@
 class_name Result
 
 # Constructors for Result instances.
-static func ok(value) -> Result:
+static func ok(value = null) -> Result:
 	return Ok.new(value)
 
 
@@ -19,17 +19,17 @@ func is_error() -> bool:
 	return false
 
 
-func bind(f: Callable) -> Result:
+func bind(_f: Callable) -> Result:
 	assert(false, "Not Implemented")
 	return null
 
 
-func fold(on_ok: Callable, on_error: Callable):
+func fold(_on_ok: Callable, _on_error: Callable):
 	assert(false, "Not Implemented")
 	return null
 
 
-func map(f: Callable) -> Result:
+func map(_f: Callable) -> Result:
 	assert(false, "Not Implemented")
 	return null
 
@@ -39,11 +39,11 @@ func unwrap():
 	return null
 
 
-func unwrap_else(default):
+func unwrap_else(_default):
 	assert(false, "Not Implemented")
 	return null
 
 
-func unwrap_or_else(f: Callable):
+func unwrap_or_else(_f: Callable):
 	assert(false, "Not Implemented")
 	return null

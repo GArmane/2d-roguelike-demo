@@ -1,9 +1,9 @@
-@icon("res://assets/icon_godot_node/node/icon_lever.png")
-
+@icon("res://assets/icon_godot_node/node/icon_lever.png")\
 class_name State extends Node
 
 # Emits when state finishes and transitions to another state.
 signal finished(next_state_path: String, data: Dictionary)
+
 
 # Called by the state machine upon changing the active state. The `data` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.

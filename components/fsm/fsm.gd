@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	_current_state.physics_run(delta)
 
 func _process(delta: float) -> void:
-	_current_state.run(delta)
+	_current_state.update(delta)
 
 func _transition_to_next_state(target_state_path: String, data: Dictionary = {}) -> Result:
 	if not has_node(target_state_path):

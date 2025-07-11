@@ -23,7 +23,7 @@ func bind(f: Callable) -> Result:
 	return f.call(_value)
 
 
-func fold(on_ok: Callable, on_error: Callable):
+func fold(on_ok: Callable, _on_error: Callable):
 	return on_ok.call(_value)
 
 
@@ -35,9 +35,9 @@ func unwrap():
 	return _value
 
 
-func unwrap_else(default):
+func unwrap_else(_default):
 	return _value
 
 
-func unwrap_or_else(f: Callable):
+func unwrap_or_else(_f: Callable):
 	return _value

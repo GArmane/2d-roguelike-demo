@@ -19,15 +19,15 @@ func is_error() -> bool:
 	return !is_ok()
 
 
-func bind(f: Callable) -> Result:
+func bind(_f: Callable) -> Result:
 	return Result.error(_value)
 
 
-func fold(on_ok: Callable, on_error: Callable):
+func fold(_on_ok: Callable, on_error: Callable):
 	return on_error.call(_value)
 
 
-func map(f: Callable) -> Result:
+func map(_f: Callable) -> Result:
 	return Result.error(_value)
 
 

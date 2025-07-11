@@ -7,7 +7,7 @@ func play_animation(anim_name: String) -> Result:
 	return Result.ok()
 
 func attack() -> Result:
-	$Sword/SwordAnimationPlayer.play("attack")
+	$Sword/AnimationPlayer.play("attack")
 	return Result.ok()
 
 func rotate_weapon(mouse_dir: Vector2) -> Result:

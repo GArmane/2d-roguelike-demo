@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://csvg02x47qr0o"]
+
+[ext_resource type="Texture2D" uid="uid://dnwskkrb0wbm" path="res://vfx/slash/slash_effect_anim_spritesheet.png" id="1_uc32t"]
+
+[node name="Slash" type="Sprite2D"]
+texture = ExtResource("1_uc32t")
+hframes = 3

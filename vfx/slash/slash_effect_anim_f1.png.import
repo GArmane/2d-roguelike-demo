@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnwskkrb0wbm"
-path="res://.godot/imported/slash_effect_anim_spritesheet.png-58416ba640107f379a8d00f435bcc8ac.ctex"
+uid="uid://bdj8ok72c2teq"
+path="res://.godot/imported/slash_effect_anim_f1.png-04e697caf8a19d3c0454ff8e7ca4d3e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dungeon_crawler_16X16_pixel_pack_v1.1/effects (new)/slash_effect_anim_spritesheet.png"
-dest_files=["res://.godot/imported/slash_effect_anim_spritesheet.png-58416ba640107f379a8d00f435bcc8ac.ctex"]
+source_file="res://vfx/slash/slash_effect_anim_f1.png"
+dest_files=["res://.godot/imported/slash_effect_anim_f1.png-04e697caf8a19d3c0454ff8e7ca4d3e9.ctex"]
 
 [params]
 

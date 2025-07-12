@@ -7,8 +7,14 @@ func enter(_previous_state_path: String, _data: Dictionary = {}) -> void:
 func exit() -> void:
 	player.mov_direction = Vector2.ZERO
 
-func handle_input(event: InputEvent) -> void:
-	if event.is_action("player_attack"):
+func update(_delta: float) -> void:
+	var mouse_direction: Vector2 = (player.get_global_mouse_position() - player.global_position) \
+		.normalized()
+	player.set_orientation(mouse_direction)
+	player.rotate_weapon(mouse_direction)
+
+	
+	if Input.is_action_pressed("player_attack"):
 		player.attack()
 	var mov_direction = Vector2.ZERO
 	if Input.is_action_pressed("player_down"):
@@ -23,9 +29,3 @@ func handle_input(event: InputEvent) -> void:
 		emit_signal("finished", IDLE)
 	else:
 		player.mov_direction = mov_direction
-
-func update(_delta: float) -> void:
-	var mouse_direction: Vector2 = (player.get_global_mouse_position() - player.global_position) \
-		.normalized()
-	player.set_orientation(mouse_direction)
-	player.rotate_weapon(mouse_direction)

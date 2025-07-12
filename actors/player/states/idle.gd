@@ -5,17 +5,16 @@ func enter(_previous_state_path: String, _data: Dictionary = {}):
 	player.mov_direction = Vector2.ZERO
 	player.play_animation("idle")
 
-func handle_input(event: InputEvent) -> void:
-	if event.is_action("player_attack"):
-		player.attack()
-	if event.is_action_pressed("player_down") \
-	or event.is_action_pressed("player_left") \
-	or event.is_action_pressed("player_right") \
-	or event.is_action_pressed("player_up"):
-		emit_signal("finished", RUNNING)
-
 func update(_delta: float) -> void:
 	var mouse_direction: Vector2 = (player.get_global_mouse_position() - player.global_position) \
 		.normalized()
 	player.set_orientation(mouse_direction)
 	player.rotate_weapon(mouse_direction)
+
+	if Input.is_action_pressed("player_attack"):
+		player.attack()
+	if Input.is_action_pressed("player_down") \
+	or Input.is_action_pressed("player_left") \
+	or Input.is_action_pressed("player_right") \
+	or Input.is_action_pressed("player_up"):
+		emit_signal("finished", RUNNING)

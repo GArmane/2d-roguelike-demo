@@ -1,4 +1,4 @@
-@icon("res://assets/icon_godot_node/node/icon_gear.png")
+@icon("res://assets/icon-godot-node/node/icon_gear.png")
 class_name FiniteStateMachine extends Node
 
 # Initial data set at the start of the FSM process.

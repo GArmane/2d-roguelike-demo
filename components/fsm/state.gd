@@ -1,4 +1,4 @@
-@icon("res://assets/icon_godot_node/node/icon_lever.png")\
+@icon("res://assets/icon-godot-node/node/icon_lever.png")
 class_name State extends Node
 
 # Emits when state finishes and transitions to another state.

@@ -1,4 +1,4 @@
-@icon("res://assets/icon_godot_node/node_2D/icon_human_controller.png")
+@icon("res://assets/icon-godot-node/node-2D/icon_human_controller.png")
 class_name PlayerCharacter extends Character
 
 

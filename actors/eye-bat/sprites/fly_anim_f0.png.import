@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qn8ajjo008w8"
-path="res://.godot/imported/fly_anim_f0.png-f889f48266b997ca7cb655eca3f87f21.ctex"
+path="res://.godot/imported/fly_anim_f0.png-5f8a99eebb2fa032e3dd8bded3cb6940.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dungeon-crawler-16X16-pixel-pack-v1.1/enemies/flying creature/fly_anim_f0.png"
-dest_files=["res://.godot/imported/fly_anim_f0.png-f889f48266b997ca7cb655eca3f87f21.ctex"]
+source_file="res://actors/eye-bat/sprites/fly_anim_f0.png"
+dest_files=["res://.godot/imported/fly_anim_f0.png-5f8a99eebb2fa032e3dd8bded3cb6940.ctex"]
 
 [params]
 

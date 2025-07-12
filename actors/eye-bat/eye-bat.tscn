@@ -1,0 +1,115 @@
+[gd_scene load_steps=14 format=3 uid="uid://co7yrhjulylhl"]
+
+[ext_resource type="PackedScene" uid="uid://bodc4d2tyrgte" path="res://actors/character/character.tscn" id="1_0g260"]
+[ext_resource type="Script" uid="uid://csxu0o1sc3irq" path="res://actors/eye-bat/eye-bat.gd" id="2_itumi"]
+[ext_resource type="Texture2D" uid="uid://bh7u01jg2t41q" path="res://actors/eye-bat/sprites/fly_anim_spritesheet.png" id="3_ysclu"]
+[ext_resource type="Script" uid="uid://cnngym6sv81hn" path="res://actors/eye-bat/states/fly.gd" id="4_itumi"]
+
+[sub_resource type="Animation" id="Animation_itumi"]
+resource_name = "fly"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ysclu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6qas"]
+_data = {
+&"RESET": SubResource("Animation_ysclu"),
+&"fly": SubResource("Animation_itumi")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbpmu"]
+atlas = ExtResource("3_ysclu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilq4b"]
+atlas = ExtResource("3_ysclu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjxpn"]
+atlas = ExtResource("3_ysclu")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktx1l"]
+atlas = ExtResource("3_ysclu")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s8ew5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbpmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilq4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjxpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktx1l")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_itumi"]
+radius = 5.0
+
+[node name="EyeBat" instance=ExtResource("1_0g260")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_itumi")
+acceleration = 20
+max_speed = 80
+
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_i6qas")
+}
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_s8ew5")
+animation = &"fly"
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_itumi")
+
+[node name="Fly" type="Node" parent="FSM" index="0"]
+script = ExtResource("4_itumi")
+metadata/_custom_type_script = "uid://bk0kh7b3e4wkn"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="4"]
+path_postprocessing = 1
+
+[node name="NavigationPathTimer" type="Timer" parent="." index="5"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="NavigationPathTimer" to="." method="_on_navigation_path_timer_timeout"]

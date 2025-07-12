@@ -2,10 +2,6 @@
 class_name PlayerCharacter extends Character
 
 
-func play_animation(anim_name: String) -> Result:
-	$AnimationPlayer.play(anim_name)
-	return Result.ok()
-
 func attack() -> Result:
 	$Sword/AnimationPlayer.play("attack")
 	return Result.ok()

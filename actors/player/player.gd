@@ -2,16 +2,16 @@
 class_name PlayerCharacter extends Character
 
 
+func _physics_process(delta: float) -> void:
+	super(delta)
+	_update_weapon_direction()
+
+func _update_weapon_direction() -> void:
+	$Sword.rotation = look_direction.angle()
+	$Sword.scale.y = -1 if $Sword.scale.y == 1 and look_direction.x < 0 \
+					else 1 if $Sword.scale.y == -1 and look_direction.x > 0 \
+					else $Sword.scale.y
+
 func attack() -> Result:
 	$Sword/AnimationPlayer.play("attack")
-	return Result.ok()
-
-func rotate_weapon(mouse_dir: Vector2) -> Result:
-	$Sword.rotation = mouse_dir.angle()
-	if $Sword.scale.y == 1 and mouse_dir.x < 0:
-		$Sword.scale.y = -1
-	elif $Sword.scale.y == -1 and mouse_dir.x > 0:
-		$Sword.scale.y = 1
-	else:
-		pass
 	return Result.ok()

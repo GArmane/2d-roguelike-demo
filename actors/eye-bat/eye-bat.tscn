@@ -1,9 +1,25 @@
-[gd_scene load_steps=14 format=3 uid="uid://co7yrhjulylhl"]
+[gd_scene load_steps=16 format=3 uid="uid://co7yrhjulylhl"]
 
 [ext_resource type="PackedScene" uid="uid://bodc4d2tyrgte" path="res://actors/character/character.tscn" id="1_0g260"]
 [ext_resource type="Script" uid="uid://csxu0o1sc3irq" path="res://actors/eye-bat/eye-bat.gd" id="2_itumi"]
 [ext_resource type="Texture2D" uid="uid://bh7u01jg2t41q" path="res://actors/eye-bat/sprites/fly_anim_spritesheet.png" id="3_ysclu"]
-[ext_resource type="Script" uid="uid://cnngym6sv81hn" path="res://actors/eye-bat/states/fly.gd" id="4_itumi"]
+[ext_resource type="Script" uid="uid://cnngym6sv81hn" path="res://actors/eye-bat/states/idle.gd" id="4_itumi"]
+[ext_resource type="Script" uid="uid://d2fgtf1skk6r1" path="res://actors/eye-bat/states/chase.gd" id="5_ysclu"]
+
+[sub_resource type="Animation" id="Animation_ysclu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_itumi"]
 resource_name = "fly"
@@ -20,21 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_ysclu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i6qas"]
@@ -82,6 +83,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_itumi"]
 radius = 5.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ysclu"]
+radius = 128.0
+
 [node name="EyeBat" instance=ExtResource("1_0g260")]
 collision_layer = 4
 collision_mask = 2
@@ -101,8 +105,15 @@ animation = &"fly"
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("CircleShape2D_itumi")
 
-[node name="Fly" type="Node" parent="FSM" index="0"]
+[node name="FSM" parent="." index="3" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="FSM" index="0"]
 script = ExtResource("4_itumi")
+metadata/_custom_type_script = "uid://bk0kh7b3e4wkn"
+
+[node name="Chase" type="Node" parent="FSM" index="1"]
+script = ExtResource("5_ysclu")
 metadata/_custom_type_script = "uid://bk0kh7b3e4wkn"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="4"]
@@ -111,5 +122,14 @@ path_postprocessing = 1
 [node name="NavigationPathTimer" type="Timer" parent="." index="5"]
 wait_time = 0.5
 autostart = true
+
+[node name="Sensors" type="Node2D" parent="." index="6"]
+
+[node name="Proximity" type="Area2D" parent="Sensors" index="0"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensors/Proximity" index="0"]
+shape = SubResource("CircleShape2D_ysclu")
 
 [connection signal="timeout" from="NavigationPathTimer" to="." method="_on_navigation_path_timer_timeout"]

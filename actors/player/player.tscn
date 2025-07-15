@@ -218,6 +218,9 @@ animation = &"idle"
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_15y17")
 
+[node name="FSM" parent="." index="3" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Idle")
+
 [node name="Idle" type="Node" parent="FSM" index="0"]
 script = ExtResource("5_6p1w3")
 metadata/_custom_type_script = "uid://bk0kh7b3e4wkn"

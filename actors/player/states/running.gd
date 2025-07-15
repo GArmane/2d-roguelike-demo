@@ -2,16 +2,13 @@ extends State
 
 
 func enter(_previous_state_path: String, _data: Dictionary = {}) -> void:
-	owner.play_animation("run")
+	owner.animation_player.play("run")
 
 func exit() -> void:
-	owner.direction = Vector2.ZERO
+	owner.move_direction = Vector2.ZERO
 
 func update(_delta: float) -> void:
-	var mouse_direction: Vector2 = (owner.get_global_mouse_position() - owner.global_position) \
-		.normalized()
-	owner.set_orientation(mouse_direction)
-	owner.rotate_weapon(mouse_direction)
+	owner.look_direction = (owner.get_global_mouse_position() - owner.global_position)
 	if Input.is_action_pressed("player_attack"):
 		owner.attack()
 	var direction = Vector2.ZERO
@@ -26,4 +23,4 @@ func update(_delta: float) -> void:
 	if direction == Vector2.ZERO:
 		emit_signal("finished", "Idle")
 	else:
-		owner.direction = direction
+		owner.move_direction = direction

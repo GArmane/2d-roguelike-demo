@@ -7,6 +7,7 @@ func _on_proximity_body_entered(body: Node2D) -> void:
 
 func enter(_previous_state_path: String, _data: Dictionary = {}):
 	owner.animation_player.play("fly")
+	owner.move_direction = Vector2.ZERO
 	owner.proximity_sensor.body_entered.connect(_on_proximity_body_entered)
 
 func exit():

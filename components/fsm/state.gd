@@ -7,22 +7,22 @@ signal finished(next_state_path: String, data: Dictionary)
 
 # Called by the state machine upon changing the active state. The `data` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_previous_state_path: String, _data: Dictionary = {}):
-	pass
+func enter(_previous_state_path: String, _data: Dictionary = {}) -> Result:
+	return Result.ok()
 
 # Called by the state machine before changing the active state. Use this function
 # to clean up the state.
-func exit() -> void:
-	pass
+func exit() -> Result:
+	return Result.ok()
 
 # Called by the state machine when receiving unhandled input events.
-func handle_input(_event: InputEvent):
-	pass
+func handle_input(_event: InputEvent) -> Result:
+	return Result.ok()
 
 # Called by the state machine on the engine's physics update tick.
-func physics_run(_delta: float) -> void:
-	pass
+func physics_run(_delta: float) -> Result:
+	return Result.ok()
 
 # Called by the state machine on the engine's main loop tick.
-func update(_delta: float) -> void:
-	pass
+func update(_delta: float) -> Result:
+	return Result.ok()

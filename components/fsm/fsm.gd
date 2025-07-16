@@ -23,16 +23,16 @@ func _ready() -> void:
 		state.finished.connect(_transition_to_next_state)
 
 	await owner.ready
-	_current_state.enter("", initial_data)
+	_current_state.enter("", initial_data).unwrap()
 
 func _unhandled_input(event: InputEvent) -> void:
-	_current_state.handle_input(event)
+	_current_state.handle_input(event).unwrap()
 
 func _physics_process(delta: float) -> void:
-	_current_state.physics_run(delta)
+	_current_state.physics_run(delta).unwrap()
 
 func _process(delta: float) -> void:
-	_current_state.update(delta)
+	_current_state.update(delta).unwrap()
 
 func _transition_to_next_state(target_state_path: String, data: Dictionary = {}) -> Result:
 	if not has_node(target_state_path):

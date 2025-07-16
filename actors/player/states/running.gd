@@ -1,13 +1,15 @@
 extends State
 
 
-func enter(_previous_state_path: String, _data: Dictionary = {}) -> void:
+func enter(_previous_state_path: String, _data: Dictionary = {}) -> Result:
 	owner.animation_player.play("run")
+	return Result.ok()
 
-func exit() -> void:
+func exit() -> Result:
 	owner.move_direction = Vector2.ZERO
+	return Result.ok()
 
-func update(_delta: float) -> void:
+func update(_delta: float) -> Result:
 	owner.look_direction = (owner.get_global_mouse_position() - owner.global_position)
 	if Input.is_action_pressed("player_attack"):
 		owner.attack()
@@ -24,3 +26,4 @@ func update(_delta: float) -> void:
 		emit_signal("finished", "Idle")
 	else:
 		owner.move_direction = direction
+	return Result.ok()

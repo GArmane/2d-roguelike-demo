@@ -14,16 +14,24 @@ func is_none() -> bool:
 	return !is_some()
 
 
-func bind(f: Callable) -> Optional:
+func bind(_f: Callable) -> Optional:
 	return self
 
 
-func fold(_on_some: Callable, on_none: Callable):
-	return on_none.call()
-
-
-func map(f: Callable) -> Optional:
+func map(_f: Callable) -> Optional:
 	return self
+
+
+func ok() -> Error:
+	return Result.error(null)
+
+
+func ok_or(default: Result) -> Result:
+	return default
+
+
+func ok_or_else(f: Callable) -> Result:
+	return f.call()
 
 
 func unwrap():

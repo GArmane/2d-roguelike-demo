@@ -9,18 +9,17 @@ class_name FiniteStateMachine extends Node
 # The current state of the state machine. If no initial state found, get
 # first child and set it as the initial state. If there is not children,
 # the FSM starts with a null state and errors out.
-@onready var _current_state: State = (func get_initial_state() -> State:
-	return initial_state if initial_state != null else get_child(0)
-).call()
-
-var _states: Array[Node] = []
+@onready var _current_state: State = (
+	func() -> Optional:
+		return Optional.some(initial_state) if initial_state \
+		else Optional.from_unsafe(func(): return get_child(0))
+).call().unwrap()
 
 
 func _ready() -> void:
 	# Get all states children of the FSM and connect their signals.
-	_states = find_children("*", "State")
-	for state: State in _states:
-		state.finished.connect(_transition_to_next_state)
+	for state: State in find_children("*", "State"):
+		state.finished.connect(_on_state_finished)
 
 	await owner.ready
 	_current_state.enter("", initial_data).unwrap()
@@ -34,14 +33,15 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	_current_state.update(delta).unwrap()
 
-func _transition_to_next_state(target_state_path: String, data: Dictionary = {}) -> Result:
-	if not has_node(target_state_path):
-		var msg = owner.name + ": Trying to transition to state " + target_state_path + " but it does not exist."
-		assert(false, msg)
-		return Result.error(msg)
-
-	_current_state.exit()
-	_current_state = get_node(target_state_path)
-	_current_state.enter(_current_state.name, data)
-
-	return Result.ok(_current_state)
+func _on_state_finished(target_state_path: String, data: Dictionary = {}) -> void:
+	_current_state.exit().unwrap()
+	Some.from_unsafe(func(): return get_node(target_state_path)).ok() \
+	.map_err(func(__):
+		return Result.error(owner.name + ": Trying to transition to state " + target_state_path + " but it does not exist.")
+	).map(func(next_state):
+		next_state.enter(_current_state.name, data)
+		return next_state
+	).map(func(next_state):
+		_current_state = next_state
+		return Result.ok(_current_state)
+	).unwrap()

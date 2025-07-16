@@ -11,7 +11,7 @@ static func none() -> Optional:
 
 # Execute an unsafe function (returns null when errored) and wraps it around
 # a Optional type.
-static func from_unsafe(f: Callable) -> Result:
+static func from_unsafe(f: Callable) -> Optional:
 	var res = f.call()
 	return Some.new(res) if res != null else None.new()
 
@@ -32,12 +32,22 @@ func bind(_f: Callable) -> Optional:
 	return null
 
 
-func fold(_on_ok: Callable, _on_error: Callable):
+func map(_f: Callable) -> Optional:
 	assert(false, "Not Implemented")
 	return null
 
 
-func map(_f: Callable) -> Optional:
+func ok() -> Result:
+	assert(false, "Not Implemented")
+	return null
+
+
+func ok_or(_default: Result) -> Result:
+	assert(false, "Not Implemented")
+	return null
+
+
+func ok_or_else(_f: Callable) -> Result:
 	assert(false, "Not Implemented")
 	return null
 

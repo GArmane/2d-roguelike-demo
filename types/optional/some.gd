@@ -24,12 +24,20 @@ func bind(f: Callable) -> Optional:
 	return f.call(_value)
 
 
-func fold(on_some: Callable, _on_none: Callable):
-	return on_some.call(_value) 
-
-
 func map(f: Callable) -> Optional:
 	return Some.new(f.call(_value))
+
+
+func ok() -> Ok:
+	return Result.ok(_value)
+
+
+func ok_or(_default: Result) -> Ok:
+	return Result.ok(_value)
+
+
+func ok_or_else(_f: Callable) -> Ok:
+	return Result.ok(_value)
 
 
 func unwrap():

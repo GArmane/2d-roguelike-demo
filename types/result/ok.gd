@@ -19,25 +19,25 @@ func is_error() -> bool:
 	return !is_ok()
 
 
-func bind(f: Callable) -> Result:
+func bind(f: Callable) -> Ok:
 	return f.call(_value)
 
 
-func fold(on_ok: Callable, _on_error: Callable):
-	return on_ok.call(_value)
-
-
-func map(f: Callable) -> Result:
+func map(f: Callable) -> Ok:
 	return Result.ok(f.call(_value))
 
 
-func unwrap():
+func map_err(_f: Callable) -> Ok:
+	return self
+
+
+func unwrap() -> Object:
 	return _value
 
 
-func unwrap_or_default(_default):
+func unwrap_or_default(_default) -> Object:
 	return _value
 
 
-func unwrap_or_else(_f: Callable):
+func unwrap_or_else(_f: Callable) -> Object:
 	return _value

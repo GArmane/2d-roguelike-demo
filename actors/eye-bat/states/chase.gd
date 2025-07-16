@@ -12,7 +12,7 @@ func exit() -> Result:
 	owner.proximity_sensor.body_exited.disconnect(_on_proximity_body_exited)
 	return Result.ok()
 
-func physics_run(delta: float) -> Result:
+func physics_run(_delta: float) -> Result:
 	# If there is no target, first it'll try to reach the last known target
 	# position before going back to idle.
 	if not owner.target and owner.navigation_agent.is_target_reached():

@@ -20,7 +20,7 @@ func is_error() -> bool:
 
 
 func bind(_f: Callable) -> Result:
-	return Result.error(_value)
+	return self
 
 
 func fold(_on_ok: Callable, on_error: Callable):
@@ -28,11 +28,11 @@ func fold(_on_ok: Callable, on_error: Callable):
 
 
 func map(_f: Callable) -> Result:
-	return Result.error(_value)
+	return self
 
 
 func unwrap():
-	assert(false, "Ok(%s)" % _value)
+	assert(false, "Error(%s)" % _value)
 	return null
 
 

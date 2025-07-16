@@ -27,18 +27,18 @@ func map(_f: Callable) -> Error:
 	return self
 
 
-func map_err(f: Callable) -> Object:
+func map_err(f: Callable):
 	return f.call(_value)
 
 
-func unwrap() -> Object:
+func unwrap():
 	assert(false, "Error(%s)" % _value)
 	return null
 
 
-func unwrap_or_default(default) -> Object:
+func unwrap_or_default(default):
 	return default
 
 
-func unwrap_or_else(f: Callable) -> Object:
+func unwrap_or_else(f: Callable):
 	return f.call(_value)

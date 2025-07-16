@@ -1,10 +1,10 @@
 @icon("res://assets/icon-godot-node/node/icon_gear.png")
 class_name FiniteStateMachine extends Node
 
-# Initial data set at the start of the FSM process.
-@export var initial_data: Dictionary = {}
+
 # The initial state of the state machine. If not set, the first child node is used.
 @export var initial_state: State = null
+
 
 # The current state of the state machine. If no initial state found, get
 # first child and set it as the initial state. If there is not children,
@@ -22,7 +22,7 @@ func _ready() -> void:
 		state.finished.connect(_on_state_finished)
 
 	await owner.ready
-	_current_state.enter("", initial_data).unwrap()
+	_current_state.enter("").unwrap()
 
 func _unhandled_input(event: InputEvent) -> void:
 	_current_state.handle_input(event).unwrap()
@@ -33,13 +33,13 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	_current_state.update(delta).unwrap()
 
-func _on_state_finished(target_state_path: String, data: Dictionary = {}) -> void:
+func _on_state_finished(target_state_path: String) -> void:
 	_current_state.exit().unwrap()
 	Some.from_unsafe(func(): return get_node(target_state_path)).ok() \
 	.map_err(func(__):
 		return Result.error(owner.name + ": Trying to transition to state " + target_state_path + " but it does not exist.")
 	).map(func(next_state):
-		next_state.enter(_current_state.name, data)
+		next_state.enter(_current_state.name)
 		return next_state
 	).map(func(next_state):
 		_current_state = next_state

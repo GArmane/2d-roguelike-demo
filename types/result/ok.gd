@@ -31,13 +31,13 @@ func map_err(_f: Callable) -> Ok:
 	return self
 
 
-func unwrap() -> Object:
+func unwrap():
 	return _value
 
 
-func unwrap_or_default(_default) -> Object:
+func unwrap_or_default(_default):
 	return _value
 
 
-func unwrap_or_else(_f: Callable) -> Object:
+func unwrap_or_else(_f: Callable):
 	return _value

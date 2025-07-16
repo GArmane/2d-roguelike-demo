@@ -28,15 +28,15 @@ func map(f: Callable) -> Optional:
 	return Some.new(f.call(_value))
 
 
-func ok() -> Ok:
+func ok() -> Result:
 	return Result.ok(_value)
 
 
-func ok_or(_default: Result) -> Ok:
+func ok_or(_default: Result) -> Result:
 	return Result.ok(_value)
 
 
-func ok_or_else(_f: Callable) -> Ok:
+func ok_or_else(_f: Callable) -> Result:
 	return Result.ok(_value)
 
 

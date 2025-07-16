@@ -37,21 +37,21 @@ func map(_f: Callable) -> Result:
 	return null
 
 
-func map_err(_f: Callable) -> Object:
+func map_err(_f: Callable):
 	assert(false, "Not Implemented")
 	return null
 
 
-func unwrap() -> Object:
+func unwrap():
 	assert(false, "Not Implemented")
 	return null
 
 
-func unwrap_or_default(_default) -> Object:
+func unwrap_or_default(_default):
 	assert(false, "Not Implemented")
 	return null
 
 
-func unwrap_or_else(_f: Callable) -> Object:
+func unwrap_or_else(_f: Callable):
 	assert(false, "Not Implemented")
 	return null

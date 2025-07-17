@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bodc4d2tyrgte"]
+[gd_scene load_steps=3 format=3 uid="uid://bodc4d2tyrgte"]
 
 [ext_resource type="Script" uid="uid://bjo8fvv6l86o4" path="res://actors/character/character.gd" id="1_dwr5h"]
-[ext_resource type="Script" uid="uid://cuoqyfjyjde86" path="res://systems/combat-system/combat_agent.gd" id="2_hyvou"]
-[ext_resource type="Script" uid="uid://0y6x50xreesx" path="res://components/fsm/fsm.gd" id="2_xgjqq"]
+[ext_resource type="Script" uid="uid://cqqea2c3rapa0" path="res://components/fsm/fsm.gd" id="2_xgjqq"]
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_dwr5h")
@@ -13,10 +12,6 @@ script = ExtResource("1_dwr5h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="CombatAgent" type="Node" parent="."]
-script = ExtResource("2_hyvou")
-metadata/_custom_type_script = "uid://cuoqyfjyjde86"
-
 [node name="FSM" type="Node" parent="."]
 script = ExtResource("2_xgjqq")
-metadata/_custom_type_script = "uid://0y6x50xreesx"
+metadata/_custom_type_script = "uid://cqqea2c3rapa0"

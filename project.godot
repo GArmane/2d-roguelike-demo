@@ -15,17 +15,13 @@ run/main_scene="uid://bwno0ow0o8bjg"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-CombatSystem="*res://systems/combat-system/combat_system.gd"
-
 [display]
 
 window/size/viewport_width=480
 window/size/viewport_height=270
 window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
-mouse_cursor/custom_image="uid://b0spgf2r5jvkd"
+mouse_cursor/custom_image="uid://dsygee4nst13m"
 
 [input]
 

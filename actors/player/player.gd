@@ -1,5 +1,5 @@
 @icon("res://assets/icon-godot-node/node-2D/icon_human_controller.png")
-class_name PlayerCharacter extends Character
+class_name Player extends Character
 
 
 func _physics_process(delta: float) -> void:
@@ -16,8 +16,4 @@ func _update_weapon_direction() -> void:
 
 func attack() -> Result:
 	$Sword/AnimationPlayer.play("attack")
-	return Result.ok()
-
-
-func _on_sword_target_hit(body: Node2D) -> void:
-	$CombatAgent.attack_target(body).unwrap()
+	return Result.new(OK)

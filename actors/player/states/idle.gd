@@ -9,7 +9,7 @@ func enter(_previous_state_path: String) -> Result:
 func update(_delta: float) -> Result:
 	owner.look_direction = (owner.get_global_mouse_position() - owner.global_position)
 	if Input.is_action_pressed("player_attack"):
-		owner.attack()
+		owner.attack().unwrap()
 	if Input.is_action_pressed("player_down") \
 	or Input.is_action_pressed("player_left") \
 	or Input.is_action_pressed("player_right") \

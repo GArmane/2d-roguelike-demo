@@ -24,10 +24,10 @@ func handle_input(event: InputEvent) -> Result:
 
 
 # Called by the state machine on the engine's physics update tick.
-func physics_run(delta: float) -> Result:
+func physics_run(_delta: float) -> Result:
 	return Result.ok(self)
 
 
 # Called by the state machine on the engine's main loop tick.
-func update(delta: float) -> Result:
+func update(_delta: float) -> Result:
 	return Result.ok(self)

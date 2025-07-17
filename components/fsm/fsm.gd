@@ -24,14 +24,18 @@ func _ready() -> void:
 	await owner.ready
 	_current_state.enter("").unwrap()
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	_current_state.handle_input(event).unwrap()
+
 
 func _physics_process(delta: float) -> void:
 	_current_state.physics_run(delta).unwrap()
 
+
 func _process(delta: float) -> void:
 	_current_state.update(delta).unwrap()
+
 
 func _on_state_finished(target_state_path: String) -> void:
 	_current_state.exit().unwrap()

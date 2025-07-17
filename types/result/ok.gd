@@ -27,7 +27,7 @@ func map(f: Callable) -> Ok:
 	return Result.ok(f.call(_value))
 
 
-func map_err(_f: Callable) -> Ok:
+func map_err(_f: Callable):
 	return self
 
 

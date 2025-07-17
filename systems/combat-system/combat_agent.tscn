@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsj8mv4k6yobu"]
+
+[ext_resource type="Script" uid="uid://cuoqyfjyjde86" path="res://systems/combat-system/combat_agent.gd" id="1_ji2ht"]
+
+[node name="CombatAgent" type="Node"]
+script = ExtResource("1_ji2ht")

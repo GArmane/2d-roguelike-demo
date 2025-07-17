@@ -28,4 +28,4 @@ func physics_run(_delta: float) -> Result:
 
 
 func _on_proximity_body_exited(_body: Node2D) -> void:
-	owner.target = null
+	if owner: owner.target = null

@@ -13,4 +13,4 @@ tile_map_data = PackedByteArray("AAAAAAAAAAADAAEAAAAAAAEAAAADAAEAAAAAAAIAAAADAAE
 position = Vector2(0, -1)
 
 [node name="EyeBat" parent="." instance=ExtResource("3_hv8li")]
-position = Vector2(320, 208)
+position = Vector2(321, 208)

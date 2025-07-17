@@ -22,7 +22,7 @@ func get_agent(agent_owner: Node2D) -> Optional:
 
 func register_attack(source: Node2D, target: Node2D) -> Result:
 	var source_agent = get_agent(source)
-	var target_agent = get_agent(source)
+	var target_agent = get_agent(target)
 
 	if source_agent.is_none():
 		return Result.error("Source agent not registered")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cy7wpvu0doaek"]
+[gd_scene load_steps=27 format=3 uid="uid://cy7wpvu0doaek"]
 
 [ext_resource type="PackedScene" uid="uid://bodc4d2tyrgte" path="res://actors/character/character.tscn" id="1_nvxhs"]
 [ext_resource type="Script" uid="uid://bh3yxgkwqrdej" path="res://actors/player/player.gd" id="2_ilk7j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://j1icp1ly5ddl" path="res://actors/player/states/idle.gd" id="5_6p1w3"]
 [ext_resource type="Script" uid="uid://c13xj3nxdta1n" path="res://actors/player/states/running.gd" id="6_15y17"]
 [ext_resource type="PackedScene" uid="uid://yj1s871rw8ff" path="res://actors/player/sword.tscn" id="7_bop6h"]
+[ext_resource type="Script" uid="uid://b4m1kttq83stn" path="res://actors/player/states/attack.gd" id="8_a744p"]
 
 [sub_resource type="Animation" id="Animation_15y17"]
 length = 0.001
@@ -218,7 +219,13 @@ animation = &"idle"
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_15y17")
 
-[node name="FSM" parent="." index="3" node_paths=PackedStringArray("initial_state")]
+[node name="CombatAgent" parent="." index="3"]
+attack_damage = 1
+hitpoints = 4
+
+[node name="Sword" parent="." index="4" instance=ExtResource("7_bop6h")]
+
+[node name="FSM" parent="." index="5" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="FSM" index="0"]
@@ -229,4 +236,8 @@ metadata/_custom_type_script = "uid://bk0kh7b3e4wkn"
 script = ExtResource("6_15y17")
 metadata/_custom_type_script = "uid://bk0kh7b3e4wkn"
 
-[node name="Sword" parent="." index="4" instance=ExtResource("7_bop6h")]
+[node name="Attack" type="Node" parent="FSM" index="2"]
+script = ExtResource("8_a744p")
+metadata/_custom_type_script = "uid://bk0kh7b3e4wkn"
+
+[connection signal="target_hit" from="Sword" to="." method="_on_sword_target_hit"]

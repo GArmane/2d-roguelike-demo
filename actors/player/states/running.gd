@@ -12,7 +12,7 @@ func exit() -> Result:
 func update(_delta: float) -> Result:
 	owner.look_direction = (owner.get_global_mouse_position() - owner.global_position)
 	if Input.is_action_pressed("player_attack"):
-		owner.attack().unwrap()
+		emit_signal("finished", "Attack")
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("player_down"):
 		direction += Vector2.DOWN

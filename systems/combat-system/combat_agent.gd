@@ -2,8 +2,8 @@
 class_name CombatAgent extends Node
 
 
-signal hitpoints_depleted(damage, value_before, value_current)
-signal attr_changed(attr, value_before, value_current)
+signal hitpoints_depleted(damage: int, current_hitpoints: int)
+signal attr_changed(attr: String, value_before, value_current)
 
 
 @export var attack_damage := 0 :
@@ -23,7 +23,7 @@ func _ready() -> void:
 func apply_damage(qtd: int) -> Result:
 	hitpoints -= abs(qtd)
 	if hitpoints <= 0:
-		emit_signal("hitpoints_depleted")
+		emit_signal("hitpoints_depleted", qtd, hitpoints)
 	return Result.ok(hitpoints)
 
 

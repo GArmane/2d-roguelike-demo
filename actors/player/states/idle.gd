@@ -1,10 +1,10 @@
 extends State
 
 
-func enter(_previous_state_path: String) -> Result:
+func enter(_previous_state_path: String, data: Dictionary = {}) -> Result:
 	self.subject.move_direction = Vector2.ZERO
 	self.subject.animation_player.play("idle")
-	return Result.new(OK)
+	return Result.new(OK, data)
 
 
 func run(delta: float) -> Result:

@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://co7yrhjulylhl"]
+[gd_scene load_steps=18 format=3 uid="uid://co7yrhjulylhl"]
 
 [ext_resource type="PackedScene" uid="uid://bodc4d2tyrgte" path="res://actors/character/character.tscn" id="1_0g260"]
 [ext_resource type="Script" uid="uid://csxu0o1sc3irq" path="res://actors/eye-bat/eye-bat.gd" id="2_itumi"]
 [ext_resource type="Texture2D" uid="uid://bh7u01jg2t41q" path="res://actors/eye-bat/sprites/fly_anim_spritesheet.png" id="3_ysclu"]
 [ext_resource type="Script" uid="uid://cnngym6sv81hn" path="res://actors/eye-bat/states/idle.gd" id="4_itumi"]
 [ext_resource type="Script" uid="uid://d2fgtf1skk6r1" path="res://actors/eye-bat/states/chase.gd" id="5_ysclu"]
+[ext_resource type="Script" uid="uid://erdl06rj7w44" path="res://actors/eye-bat/states/hurt.gd" id="6_i6qas"]
+[ext_resource type="Script" uid="uid://bmf6xuimqucet" path="res://actors/eye-bat/states/dead.gd" id="7_bg4io"]
 
 [sub_resource type="Animation" id="Animation_ysclu"]
 length = 0.001
@@ -112,8 +114,16 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="FSM" index="0"]
 script = ExtResource("4_itumi")
 
-[node name="Chase" type="Node" parent="FSM" index="1"]
+[node name="Chasing" type="Node" parent="FSM" index="1"]
 script = ExtResource("5_ysclu")
+
+[node name="Hurt" type="Node" parent="FSM" index="2"]
+script = ExtResource("6_i6qas")
+metadata/_custom_type_script = "uid://bogmlohsb0npc"
+
+[node name="Dead" type="Node" parent="FSM" index="3"]
+script = ExtResource("7_bg4io")
+metadata/_custom_type_script = "uid://bogmlohsb0npc"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="4"]
 path_postprocessing = 1

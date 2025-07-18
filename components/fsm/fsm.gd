@@ -9,6 +9,8 @@ signal state_changed(old, new, data)
 @export var subject: Node
 # The initial state of the state machine. If not set, the first child State none is used.
 @export var initial_state: State = null
+# Initial data to be processed by the state machine
+@export var initial_data: Dictionary = {}
 
 # The current state of the state machine. If no initial state found, get
 # first child and set it as the initial state. If there is no children,
@@ -27,7 +29,7 @@ func _ready() -> void:
 		state.finished.connect(_on_state_finished)
 
 	await owner.ready
-	_current_state.enter("").unwrap()
+	_current_state.enter("", initial_data).unwrap()
 
 
 func _physics_process(delta: float) -> void:
@@ -42,8 +44,18 @@ func _unhandled_input(event: InputEvent) -> void:
 	_current_state.handle_input(event).unwrap()
 
 
+# Signal Handlers
 func _on_state_finished(target_state_path: String) -> void:
+	set_state(target_state_path).unwrap()
+
+
+# Public API
+func set_state(target_state_path: String, data: Dictionary = {}) -> Result:
 	var next_state := get_node(target_state_path) as State
+	if not next_state:
+		return Result.new(ERR_DOES_NOT_EXIST, "state %s does not exist" % target_state_path)
+
 	_current_state.exit().unwrap()
-	next_state.enter(_current_state.name).unwrap()
+	var _data = next_state.enter(_current_state.name, data).unwrap()
 	_current_state = next_state
+	return Result.new(OK)

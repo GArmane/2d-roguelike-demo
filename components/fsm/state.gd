@@ -12,8 +12,8 @@ var subject: Node :
 
 # Called by the state machine upon changing the active state. The `data` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_previous_state_path: String) -> Result:
-	return Result.new(OK)
+func enter(_previous_state_path: String, data: Dictionary = {}) -> Result:
+	return Result.new(OK, data)
 
 
 # Called by the state machine before changing the active state. Use this function

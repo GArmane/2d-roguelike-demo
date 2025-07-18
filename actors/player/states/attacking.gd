@@ -11,6 +11,6 @@ func enter(previous_state_path: String, data: Dictionary = {}) -> Result:
 	return Result.new(OK, data)
 
 
-func run(_delta: float, data: Dictionary = {}) -> Result:
+func run(_delta: float) -> Result:
 	emit_signal("finished", _previous_state_path)
-	return Result.new(OK, data)
+	return Result.new(OK)

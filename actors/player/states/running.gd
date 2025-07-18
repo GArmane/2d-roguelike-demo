@@ -1,9 +1,9 @@
 extends State
 
 
-func enter(_previous_state_path: String) -> Result:
+func enter(_previous_state_path: String, data: Dictionary = {}) -> Result:
 	subject.animation_player.play("run")
-	return Result.new(OK)
+	return Result.new(OK, data)
 
 
 func exit() -> Result:

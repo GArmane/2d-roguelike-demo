@@ -4,7 +4,7 @@ extends State
 func enter(_previous_state_path: String, data: Dictionary = {}) -> Result:
 	subject.animation_player.play("fly")
 	subject.proximity_sensor.body_exited.connect(_on_proximity_body_exited)
-	return Result.new(OK)
+	return Result.new(OK, data)
 
 
 func exit() -> Result:

@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://yj1s871rw8ff"]
 
-[ext_resource type="Script" uid="uid://clgrrt361iv0a" path="res://actors/player/sword.gd" id="1_tcbrr"]
 [ext_resource type="Texture2D" uid="uid://24fo3oqd810g" path="res://actors/player/sprites/weapon_sword_1.png" id="1_u423a"]
+[ext_resource type="PackedScene" uid="uid://cs8caqs2f6omd" path="res://components/hitbox/hitbox.tscn" id="2_doq7k"]
 [ext_resource type="PackedScene" uid="uid://csvg02x47qr0o" path="res://vfx/slash/slash.tscn" id="2_tcbrr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u423a"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_65de3"]
 radius = 4.0
-height = 18.0
+height = 20.0
 
 [sub_resource type="Animation" id="Animation_a744p"]
 length = 0.001
@@ -61,7 +61,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D/Area2D/CollisionShape2D:disabled")
+tracks/4/path = NodePath("Sprite2D/Hitbox/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -125,7 +125,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D/Area2D/CollisionShape2D:disabled")
+tracks/4/path = NodePath("Sprite2D/Hitbox/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -142,7 +142,6 @@ _data = {
 }
 
 [node name="Sword" type="Node2D"]
-script = ExtResource("1_tcbrr")
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -152,14 +151,11 @@ rotation = -2.35619
 texture = ExtResource("1_u423a")
 offset = Vector2(5, -4)
 
-[node name="Area2D" type="Area2D" parent="Node2D/Sprite2D"]
+[node name="Hitbox" parent="Node2D/Sprite2D" instance=ExtResource("2_doq7k")]
 position = Vector2(4.94973, -3.53555)
-rotation = 0.785398
-collision_layer = 0
-collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/Area2D"]
-shape = SubResource("CapsuleShape2D_u423a")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox"]
+shape = SubResource("CapsuleShape2D_65de3")
 disabled = true
 
 [node name="SlashEffect" parent="." instance=ExtResource("2_tcbrr")]
@@ -171,5 +167,3 @@ root_node = NodePath("../Node2D")
 libraries = {
 &"": SubResource("AnimationLibrary_388e2")
 }
-
-[connection signal="body_entered" from="Node2D/Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
